@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 05/06/2017 10:05:02 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="sistema.controller.Produto" table="Produto" catalog="mydb" optimistic-lock="version">
+        <id name="idProduto" type="int">
+            <column name="idProduto" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="fornecedor" class="sistema.controller.Fornecedor" fetch="select">
+            <column name="idFornecedor" not-null="true" />
+        </many-to-one>
+        <property name="nome" type="string">
+            <column name="nome" length="45" />
+        </property>
+        <property name="principioAtivo" type="string">
+            <column name="principioAtivo" length="45" />
+        </property>
+        <property name="fabricante" type="string">
+            <column name="fabricante" length="45" />
+        </property>
+        <property name="preco" type="java.lang.Float">
+            <column name="preco" precision="12" scale="0" />
+        </property>
+        <property name="quantidadeEstoque" type="java.lang.Integer">
+            <column name="quantidadeEstoque" />
+        </property>
+        <set name="produtoServicos" table="ProdutoServico" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idProduto" not-null="true" />
+            </key>
+            <one-to-many class="sistema.controller.ProdutoServico" />
+        </set>
+    </class>
+</hibernate-mapping>

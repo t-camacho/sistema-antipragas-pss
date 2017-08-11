@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 05/06/2017 10:05:02 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="sistema.controller.Endereco" table="Endereco" catalog="mydb" optimistic-lock="version">
+        <id name="idEndereco" type="int">
+            <column name="idEndereco" />
+            <generator class="increment" />
+        </id>
+        <property name="ruaAven" type="string">
+            <column name="ruaAven" length="45" />
+        </property>
+        <property name="numero" type="java.lang.Integer">
+            <column name="numero" />
+        </property>
+        <property name="cep" type="string">
+            <column name="cep" length="9" />
+        </property>
+        <property name="complemento" type="string">
+            <column name="complemento" length="50" />
+        </property>
+        <set name="ordemServicos" table="OrdemServico" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idEndereco" not-null="true" />
+            </key>
+            <one-to-many class="sistema.controller.OrdemServico" />
+        </set>
+        <set name="cadastros" table="Cadastro" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idEndereco" not-null="true" />
+            </key>
+            <one-to-many class="sistema.controller.Cadastro" />
+        </set>
+        <set name="fornecedors" table="Fornecedor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idEndereco" not-null="true" />
+            </key>
+            <one-to-many class="sistema.controller.Fornecedor" />
+        </set>
+    </class>
+    
+</hibernate-mapping>

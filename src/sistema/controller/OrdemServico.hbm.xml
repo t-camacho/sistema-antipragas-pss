@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 05/06/2017 10:05:02 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="sistema.controller.OrdemServico" table="OrdemServico" catalog="mydb" optimistic-lock="version">
+        <id name="idOrdemServico" type="int">
+            <column name="idOrdemServico" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="cliente" class="sistema.controller.Cliente" fetch="select">
+            <column name="idCliente" not-null="true" />
+        </many-to-one>
+        <many-to-one name="endereco" class="sistema.controller.Endereco" fetch="select">
+            <column name="idEndereco" not-null="true" />
+        </many-to-one>
+        <property name="status" type="string">
+            <column name="status" length="2" />
+        </property>
+        <property name="precoTotal" type="java.lang.Float">
+            <column name="precoTotal" precision="12" scale="0" />
+        </property>
+        <property name="data" type="string">
+            <column name="data" length="10" />
+        </property>
+        <property name="descricao" type="string">
+            <column name="descricao" length="65535" />
+        </property>
+        <set name="pragasEncontradases" table="PragasEncontradas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idOrdemServico" not-null="true" />
+            </key>
+            <one-to-many class="sistema.controller.PragasEncontradas" />
+        </set>
+        <set name="produtoServicos" table="ProdutoServico" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idOrdemServico" not-null="true" />
+            </key>
+            <one-to-many class="sistema.controller.ProdutoServico" />
+        </set>
+    </class>
+</hibernate-mapping>

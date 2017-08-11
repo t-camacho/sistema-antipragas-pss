@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 05/06/2017 10:05:02 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="sistema.controller.Cliente" table="Cliente" catalog="mydb" optimistic-lock="version">
+        <id name="idCliente" type="int">
+            <column name="idCliente" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="cadastro" class="sistema.controller.Cadastro" fetch="select">
+            <column name="idCadastro" not-null="true" />
+        </many-to-one>
+        <set name="ordemServicos" table="OrdemServico" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idCliente" not-null="true" />
+            </key>
+            <one-to-many class="sistema.controller.OrdemServico" />
+        </set>
+        <set name="propostas" table="Proposta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idCliente" not-null="true" />
+            </key>
+            <one-to-many class="sistema.controller.Proposta" />
+        </set>
+    </class>
+</hibernate-mapping>

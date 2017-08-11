@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 05/06/2017 10:05:02 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="sistema.controller.Fornecedor" table="Fornecedor" catalog="mydb" optimistic-lock="version">
+        <id name="idFornecedor" type="int">
+            <column name="idFornecedor" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="endereco" class="sistema.controller.Endereco" fetch="select">
+            <column name="idEndereco" not-null="true" />
+        </many-to-one>
+        <many-to-one name="telefone" class="sistema.controller.Telefone" fetch="select">
+            <column name="idTelefone" not-null="true" />
+        </many-to-one>
+        <property name="nome" type="string">
+            <column name="nome" length="45" />
+        </property>
+        <set name="produtos" table="Produto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idFornecedor" not-null="true" />
+            </key>
+            <one-to-many class="sistema.controller.Produto" />
+        </set>
+    </class>
+</hibernate-mapping>

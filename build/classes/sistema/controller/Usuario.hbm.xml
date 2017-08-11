@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 05/06/2017 10:05:02 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="sistema.controller.Usuario" table="Usuario" catalog="mydb" optimistic-lock="version">
+        <id name="idUsuario" type="java.lang.Integer">
+            <column name="idUsuario" />
+            <generator class="increment" />
+        </id>
+        <property name="login" type="string">
+            <column name="login" length="45" not-null="true" />
+        </property>
+        <property name="senha" type="string">
+            <column name="senha" length="45" not-null="true" />
+        </property>
+        <property name="tipo" type="string">
+            <column name="tipo" length="2" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

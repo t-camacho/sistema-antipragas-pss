@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 05/06/2017 10:05:02 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="sistema.controller.PragasEncontradas" table="PragasEncontradas" catalog="mydb" optimistic-lock="version">
+        <id name="idPragasEncontradas" type="int">
+            <column name="idPragasEncontradas" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="ordemServico" class="sistema.controller.OrdemServico" fetch="select">
+            <column name="idOrdemServico" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pragas" class="sistema.controller.Pragas" fetch="select">
+            <column name="idPragas" not-null="true" />
+        </many-to-one>
+        <property name="quantidade" type="java.lang.Integer">
+            <column name="quantidade" />
+        </property>
+    </class>
+</hibernate-mapping>

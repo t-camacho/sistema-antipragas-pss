@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 05/06/2017 10:05:02 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="sistema.controller.Proposta" table="Proposta" catalog="mydb" optimistic-lock="version">
+        <id name="idProposta" type="int">
+            <column name="idProposta" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="cliente" class="sistema.controller.Cliente" fetch="select">
+            <column name="idCliente" not-null="true" />
+        </many-to-one>
+        <property name="tipoServico" type="string">
+            <column name="tipoServico" length="2" />
+        </property>
+        <property name="orcamento" type="java.lang.Float">
+            <column name="orcamento" precision="12" scale="0" />
+        </property>
+        <property name="descricao" type="string">
+            <column name="descricao" length="65535" not-null="true" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="2" />
+        </property>
+    </class>
+</hibernate-mapping>

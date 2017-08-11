@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 05/06/2017 10:05:02 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="sistema.controller.Telefone" table="Telefone" catalog="mydb" optimistic-lock="version">
+        <id name="idTelefone" type="int">
+            <column name="idTelefone" />
+            <generator class="increment" />
+        </id>
+        <property name="telFixo" type="string">
+            <column name="telFixo" length="10" />
+        </property>
+        <property name="telCelular" type="string">
+            <column name="telCelular" length="11" />
+        </property>
+        <set name="fornecedors" table="Fornecedor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idTelefone" not-null="true" />
+            </key>
+            <one-to-many class="sistema.controller.Fornecedor" />
+        </set>
+        <set name="cadastros" table="Cadastro" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idTelefone" not-null="true" />
+            </key>
+            <one-to-many class="sistema.controller.Cadastro" />
+        </set>
+    </class>
+</hibernate-mapping>
